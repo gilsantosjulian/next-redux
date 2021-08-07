@@ -15,7 +15,7 @@ class MyApp extends App {
     const { Component, appProps } = this.props
 
     return(
-      <Provider>
+      <Provider store={store}>
         <Component {...appProps} />
       </Provider>
     )
