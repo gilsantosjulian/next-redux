@@ -1,4 +1,4 @@
-import head from 'next/head'
+import Head from 'next/head'
 import { connect } from 'react-redux'
 import { setInfo } from '../redux/actions/main'
 
@@ -8,7 +8,7 @@ const Weather = () => {
         <Head>
           <title>The Weather</title>
           <link rel="icon" href="/favicon.ico" />
-      </Head>
+        </Head>
 
       <main>
         <div>  
@@ -20,11 +20,11 @@ const Weather = () => {
 }
 
 const mapStateToProps = state => ({
-  userInfo: state
+  userInfo: state.main
 })
 
 const mapDispatchToProps = {
   setInfo: setInfo
 }
 
-export default connect(mapDispatchToProps, mapDispatchToProps)(weather)
+export default connect(mapStateToProps, mapDispatchToProps)(Weather)
