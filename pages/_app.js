@@ -4,6 +4,22 @@ import withRedux from 'next-redux-wrapper'
 import React from 'react'
 import store from '../redux/store'
 
+// const MyApp = (props) => {
+//   const { Component, appProps } = props
+
+//   return(
+//     <Provider store={store}>
+//       <Component {...appProps} />
+//     </Provider>
+//   )
+// }
+
+// export async function getInitialProps (Component, ctx) {
+//   const appProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
+//   console.log(appProps);
+//   return { appProps: appProps }
+// }
+
 class MyApp extends App {
   static async getInitialProps (Component, ctx) {
     const appProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
@@ -11,7 +27,7 @@ class MyApp extends App {
     return { appProps: appProps }
   }
 
-  render () {
+  render() {
     const { Component, appProps } = this.props
 
     return(
@@ -21,7 +37,6 @@ class MyApp extends App {
     )
   }
 }
-
 
 const makeStore = () => store
 
