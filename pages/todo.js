@@ -19,4 +19,8 @@ const Todo = () => {
   )
 }
 
+export async function getInitialProps() {
+    return { hola: 'mundo' }
+}
+
 export default Todo
