@@ -1,7 +1,7 @@
 import * as t from '../type'
 
 const initialState = {
-  name: 'gwest'
+  name: 'Julian'
 }
 
 const main = (state = initialState, action) => {
