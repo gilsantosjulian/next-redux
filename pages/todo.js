@@ -1,26 +1,15 @@
-import Head from 'next/head'
-import { connect } from 'react-redux'
-import { setInfo } from '../redux/actions/main'
+import NewTodo from '../components/NewTodo';
 
-const Todo = () => {
+const Todo = ({ setTitle, createTodo, isLoading, error }) => {
   return(
-      <div>
-        <Head>
-          <title>The Todo</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
+    <div className='container'>
 
       <main>
-        <div>  
-          <h1>This is a todo</h1>
-        </div>
+        <NewTodo />
       </main>
-      </div>
+      
+    </div>
   )
-}
-
-export async function getInitialProps() {
-    return { hola: 'mundo' }
 }
 
 export default Todo
