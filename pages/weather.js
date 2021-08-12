@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Header from  '../components/Header'
 import { useState } from 'react'
 import { connect } from 'react-redux'
 import { setInfo } from '../redux/actions/main'
@@ -8,11 +9,13 @@ const Weather = (props) => {
   const [ name, setName ] = useState('')
 
   return(
-      <div>
-        <Head>
-          <title>The Weather</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
+    <>
+      <Head>
+        <title>The Weather</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <Header />
 
       <main>
         <div>  
@@ -29,7 +32,7 @@ const Weather = (props) => {
           </button>
         </div>
       </main>
-      </div>
+    </>
   )
 }
 
