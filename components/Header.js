@@ -4,6 +4,7 @@ import { Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import Link from 'next/link'
 import Head from 'next/head'
 
+import SignIn from './Login';
 
 const Header = () => {
   return (
@@ -19,7 +20,12 @@ const Header = () => {
         variant='dark'
         style={{ width: '100%' }}
       >
-        <Navbar.Brand>Next-Redux App</Navbar.Brand>
+        <Link href="/">
+          <a className="text-white pr-5">
+          Next-Redux App
+          </a>
+        </Link>
+
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
 
         <Navbar.Collapse id='responsive-navbar-nav'>
@@ -30,6 +36,8 @@ const Header = () => {
         </Navbar.Collapse>
 
       </Navbar>
+
+      <SignIn />
     </>
   )
 }
