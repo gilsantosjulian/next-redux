@@ -1,15 +1,18 @@
 import { Form, Button, Modal, Alert } from 'react-bootstrap'
 
-const Login = () =>{
+const Login = ({ show, setShow, form, setFormValue, signIn, isLoading, error }) =>{
 
   return(<>
     <>
-      <Modal >
+      <Modal
+        show={show}
+        onHide={() => setShow(false)}
+      >
         <Modal.Header closeButton>
           <Modal.Title>Login to Your Account</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
 
+        <Modal.Body>
         <Form>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
@@ -31,14 +34,19 @@ const Login = () =>{
           </Form.Group>
         </Form>
         </Modal.Body>
+
         <Modal.Footer>
-          <Button variant="secondary">
+          <Button 
+            variant="secondary"
+            onClick={() => setShow(false)}
+          >
             Cancel
           </Button>
           <Button 
             variant="primary" 
             onClick={true}
             disabled={false}>
+            {isLoading ? '...loading' : 'Sign In'}
           </Button>
         </Modal.Footer>
       </Modal>
