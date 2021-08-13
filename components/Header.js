@@ -1,12 +1,29 @@
-import React from 'react'
-import { Nav, Navbar, NavDropdown } from 'react-bootstrap'
+import React, { useEffect, useState } from 'react'
+import { Nav, Navbar, NavDropdown, NavLink } from 'react-bootstrap'
+import { connect } from "react-redux"
 
 import Link from 'next/link'
 import Head from 'next/head'
 
 import SignIn from './Login';
+import { userSignUp, userSignIn, signOut, restore } from "../redux/actions/main"
 
-const Header = () => {
+const Header = (props) => {
+  const [ showSignIn, handleCloseSignIn ] = useState(false)
+  const [ form, setFormValue ] = useState({})
+  const { userInfo, restore } = props
+
+  console.log({props});
+
+  const signIn = () => props.userSignIn(form);
+
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("user_info"))
+    if(userData){
+      restore(userData)
+    }
+  }, [])
+
   return (
     <>
       <Head>
@@ -33,13 +50,63 @@ const Header = () => {
             <Link href='/weather'><a className='text-white mr-2 mt-1'>Weather</a></Link>
             <Link href='/todo'><a className='text-white mr-2 mt-1'>Todo</a></Link>
           </Nav>
+
+          {
+            userInfo.token &&
+            <Nav>
+              <NavDropdown
+                id='basic-nav-dropdown'
+                title={`welcome ${userInfo.name}`}
+              >
+                <NavDropdown.Item
+                  onClick={() => props.signOut()}
+                >
+                  Sign Out
+                </NavDropdown.Item>
+              </NavDropdown>
+            </Nav>
+          }
+
+          {
+            !userInfo.token &&
+            <Nav>
+              <NavLink
+                onClick={() => handleCloseSignIn(true)}
+              >
+                Sign In
+              </NavLink>
+              <NavLink
+                onClick={() => handleClose(true)}
+              >
+                Register
+              </NavLink>
+            </Nav>
+          }
+
         </Navbar.Collapse>
 
       </Navbar>
 
-      <SignIn />
+      <SignIn
+        show={showSignIn && !userInfo.token} 
+        // show={true} 
+        setShow={handleCloseSignIn}
+        form={form}
+        setFormValue={setFormValue}
+        error={userInfo.error}
+        signIn={signIn}
+        isLoading={props.userInfo.loading}
+      />
     </>
   )
 }
 
-export default Header
+const mapStateToProps = state => ({
+  userInfo: state.main
+})
+
+const mapDispatchToProps = {
+  userSignUp, userSignIn, signOut, restore
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)
