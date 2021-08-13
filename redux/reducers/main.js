@@ -1,7 +1,10 @@
 import * as t from '../type'
 
 const initialState = {
-  name: 'Julian'
+  name: 'Julian',
+  loading: false,
+  error: null,
+  todos: [],
 }
 
 const main = (state = initialState, action) => {
@@ -11,6 +14,17 @@ const main = (state = initialState, action) => {
       return {
         ...state,
         name: action.payload
+      }  
+
+    case t.REGISTER:
+      return {
+        ...state,
+        name: action.payload.name,
+        email: action.payload.email,
+        age: action.payload.age,
+        token: action.payload.token,
+        loading: false,
+        error: null,
       }  
     
     default:
