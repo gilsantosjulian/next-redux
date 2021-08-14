@@ -13,8 +13,6 @@ const Header = (props) => {
   const [ form, setFormValue ] = useState({})
   const { userInfo, restore } = props
 
-  console.log({props});
-
   const signIn = () => props.userSignIn(form);
 
   useEffect(() => {
@@ -89,7 +87,6 @@ const Header = (props) => {
 
       <SignIn
         show={showSignIn && !userInfo.token} 
-        // show={true} 
         setShow={handleCloseSignIn}
         form={form}
         setFormValue={setFormValue}
