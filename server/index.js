@@ -4,8 +4,6 @@ const next = require('next')
 // const { connect } = require('react-redux');
 require('dotenv').config()
 
-console.log(process.env);
-
 const {
   NODE_ENV,
   PORT,
