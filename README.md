@@ -32,3 +32,20 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Mongo and Mongoose
+
+First of all you should have installed MongoDB and be able to run it before you install mongoose. You can read [this](https://alpertellioglu.medium.com/how-to-install-mongodb-on-mac-catalina-807f1e6e830e) article to see how to do that on Mac.
+
+1. In order to install mongoose, we’ll use npm command in the project folder. But first, you should go to the relevant project folder in command line.
+
+```
+yarn add mongoose
+```
+
+2. Require mongoose in app.js / in the models or connect file
+```
+const mongoose = require("mongoose");
+```
+
+3. Go to `server/model/connect.js` file, here is the configuration
