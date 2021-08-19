@@ -1,7 +1,7 @@
 const express = require('express')
 const next = require('next')
 const cors = require('cors');
-const { connect } = require('react-redux');
+const connect = require("./model/connect")
 const bodyParser = require('body-parser').json()
 require('dotenv').config()
 
