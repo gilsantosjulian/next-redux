@@ -35,7 +35,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Mongo and Mongoose
 
-First of all you should have installed MongoDB and be able to run it before you install mongoose. You can read [this](https://alpertellioglu.medium.com/how-to-install-mongodb-on-mac-catalina-807f1e6e830e) article to see how to do that on Mac.
+First of all you should have installed MongoDB and be able to run it before you install mongoose. You can read [this](https://www.positronx.io/install-mongodb-on-macos/) article to see how to do that on Mac.
 
 1. In order to install mongoose, we’ll use npm command in the project folder. But first, you should go to the relevant project folder in command line.
 
