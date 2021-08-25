@@ -6,13 +6,17 @@ import Link from 'next/link'
 import Head from 'next/head'
 
 import SignIn from './Login';
+import Register from './Register';
+
 import { userSignUp, userSignIn, signOut, restore } from "../redux/actions/main"
 
 const Header = (props) => {
+  const [ showRegister, handleCloseRegister ] = useState(false)
   const [ showSignIn, handleCloseSignIn ] = useState(false)
   const [ form, setFormValue ] = useState({})
   const { userInfo, restore } = props
 
+  const register = () => props.userSignUp(form);
   const signIn = () => props.userSignIn(form);
 
   useEffect(() => {
@@ -74,7 +78,7 @@ const Header = (props) => {
                 Sign In
               </NavLink>
               <NavLink
-                onClick={() => handleClose(true)}
+                onClick={() => handleCloseRegister(true)}
               >
                 Register
               </NavLink>
@@ -84,6 +88,16 @@ const Header = (props) => {
         </Navbar.Collapse>
 
       </Navbar>
+
+      <Register
+        show={showRegister && !userInfo.token}
+        setShow={handleCloseRegister}
+        form={form}
+        setFormValue={setFormValue}
+        register={register}
+        error={userInfo.error}
+        isLoading={props.userInfo.loading}
+      />
 
       <SignIn
         show={showSignIn && !userInfo.token} 
