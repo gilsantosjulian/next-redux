@@ -45,6 +45,13 @@ export const userSignUp = ({
   }
 }
 
+export const signOut = () => dispatch => {
+  localStorage.removeItem('user_info')
+  dispatch({
+    type: t.SET_NAME,
+  })
+}
+
 export const userSignIn = ({ email, password }) => async dispatch => {
   try {
     dispatch({
