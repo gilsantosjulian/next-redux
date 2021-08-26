@@ -11,9 +11,9 @@ import Register from './Register';
 import { userSignUp, userSignIn, signOut, restore } from "../redux/actions/main"
 
 const Header = (props) => {
-  const [ showRegister, handleCloseRegister ] = useState(false)
-  const [ showSignIn, handleCloseSignIn ] = useState(false)
-  const [ form, setFormValue ] = useState({})
+  const [showRegister, handleCloseRegister] = useState(false)
+  const [showSignIn, handleCloseSignIn] = useState(false)
+  const [form, setFormValue] = useState({})
   const { userInfo, restore } = props
 
   const register = () => props.userSignUp(form);
@@ -21,7 +21,7 @@ const Header = (props) => {
 
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("user_info"))
-    if(userData){
+    if (userData) {
       restore(userData)
     }
   }, [])
@@ -32,16 +32,16 @@ const Header = (props) => {
         <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' />
       </Head>
 
-      <Navbar 
-        bg='dark' 
-        collapseOnSelect 
-        expand='lg' 
+      <Navbar
+        bg='dark'
+        collapseOnSelect
+        expand='lg'
         variant='dark'
         style={{ width: '100%' }}
       >
         <Link href="/">
           <a className="text-white pr-5">
-          Next-Redux App
+            Next-Redux App
           </a>
         </Link>
 
@@ -100,7 +100,7 @@ const Header = (props) => {
       />
 
       <SignIn
-        show={showSignIn && !userInfo.token} 
+        show={showSignIn && !userInfo.token}
         setShow={handleCloseSignIn}
         form={form}
         setFormValue={setFormValue}
