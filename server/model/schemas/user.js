@@ -9,7 +9,7 @@ const UserSchema = new Schema({
   },
   age: {
     type: String,
-    minlength: 3,
+    minlength: 2,
     unique: false,
   },
   email: {

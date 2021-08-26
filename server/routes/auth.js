@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 const router = require('express').Router()
 const UserSchema = require('../model/schemas/user.js')
 
@@ -8,7 +10,7 @@ const createToken = (user) => {
   }
 
   const options = {
-    expireIn: '1d'
+    algorithm: 'HS256',
   }
 
   const result = jwt.sign(
@@ -26,7 +28,7 @@ const routes = () => {
     res.end("It works great auth");
   })
 
-  router.post('/register', async(req, res) => {
+  router.post('/register', async (req, res) => {
     try {
       let user = req.body
       const hash = bcrypt.hashSync(user.password, 10)
@@ -35,24 +37,22 @@ const routes = () => {
       const newUser = new UserSchema(user)
 
       newUser.save()
-      .then(saved => {
-        const token = createToken(user)
+        .then(saved => {
+          const token = createToken(user)
 
-        console.log({saved});
-
-        res.status(200).json({
-          success: true,
-          user: {
-            name: saved.name,
-            email: saved.email,
-            age: saved.age,
-            token,
-          }
+          res.status(200).json({
+            success: true,
+            user: {
+              name: saved.name,
+              email: saved.email,
+              age: saved.age,
+              token,
+            }
+          })
         })
-      })
-      .catch(error => {
-        res.status(500).json({ success: false, error })  
-      })
+        .catch(error => {
+          res.status(500).json({ success: false, error })
+        })
     } catch (error) {
       res.status(500).json({ success: false, error })
     }
@@ -61,16 +61,15 @@ const routes = () => {
   router.post('/login', async (req, res) => {
     try {
       const user = req.body
-      console.log({user})
       const existingUser = await UserSchema.findOne({ email: user.email })
-      
-      if(!existingUser) {
+
+      if (!existingUser) {
         res.status(400).send('User does not exist')
       }
 
       // 12345 &*#(@*IDIDUFI)
       const passwordsMatch = await bcrypt.compare(user.password, existingUser.password)
-      if(!passwordsMatch){
+      if (!passwordsMatch) {
         res.status(400).json({ success: false, error: "Bad credentials" })
       }
 
@@ -89,7 +88,7 @@ const routes = () => {
       res.status(500).json({ success: false, error })
     }
 
-  }) 
+  })
 
   return router;
 }
