@@ -16,7 +16,7 @@ export const userSignUp = ({
   age,
   email,
   password,
-}) => async dispatch =>{
+}) => async dispatch => {
   try {
     dispatch({
       type: t.LOADING,
@@ -26,7 +26,7 @@ export const userSignUp = ({
     const URL = `${API_ADDRESS}/api/auth/register`
     const apiResponse = await axios.post(URL, { name, age, email, password })
 
-    if(apiResponse?.data?.success) {
+    if (apiResponse?.data?.success) {
       localStorage.setItem('user_info', JSON.stringify(apiResponse.data.user))
       dispatch({
         type: t.REGISTER,
@@ -38,8 +38,6 @@ export const userSignUp = ({
       type: t.LOADING,
       payload: false
     })
-
-    console.log({error});
     dispatch({
       type: t.ERROR,
       payload: error.response.data.error
@@ -57,7 +55,7 @@ export const userSignIn = ({ email, password }) => async dispatch => {
     const apiResponse = await axios.post(url, { email, password })
     const { success, user } = apiResponse?.data
 
-    if(success) {
+    if (success) {
       localStorage.setItem('user_info', JSON.stringify(user))
       dispatch({
         type: t.REGISTER,
@@ -75,5 +73,9 @@ export const userSignIn = ({ email, password }) => async dispatch => {
       payload: error.response.data.error
     })
   }
-
 }
+
+export const restore = (data) => dispatch => dispatch({
+  type: t.REGISTER,
+  payload: data
+})
