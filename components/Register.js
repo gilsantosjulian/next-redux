@@ -2,7 +2,7 @@ import { Form, Button, Modal, Alert } from 'react-bootstrap'
 
 const Register = ({ show, setShow, form, setFormValue, register, isLoading, error }) => {
 
-  return(
+  return (
     <>
       <Modal
         show={show}
@@ -15,7 +15,7 @@ const Register = ({ show, setShow, form, setFormValue, register, isLoading, erro
         <Modal.Body>
 
           {
-            error && 
+            error &&
             <Alert variant='danger'>{error}</Alert>
           }
 
@@ -46,7 +46,7 @@ const Register = ({ show, setShow, form, setFormValue, register, isLoading, erro
                 onChange={(e) => setFormValue({ ...form, email: e.target.value })}
               />
               <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
+                We&apos;ll never share your email with anyone else.
               </Form.Text>
             </Form.Group>
 
@@ -63,13 +63,13 @@ const Register = ({ show, setShow, form, setFormValue, register, isLoading, erro
         </Modal.Body>
 
         <Modal.Footer>
-          <Button 
+          <Button
             variant='secondary'
             onClick={() => setShow(false)}
           >
             Cancel
           </Button>
-          <Button 
+          <Button
             variant='primary'
             onClick={() => register()}
             disabled={isLoading}
