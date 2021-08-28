@@ -19,6 +19,7 @@ const Login = ({ show, setShow, form, setFormValue, signIn, isLoading, error }) 
               <Form.Control
                 type="email"
                 placeholder="Enter email"
+                onChange={(e) => setFormValue({ ...form, email: e.target.value })}
               />
               <Form.Text className="text-muted">
                 We&apos;ll never share your email with anyone else.
@@ -30,6 +31,7 @@ const Login = ({ show, setShow, form, setFormValue, signIn, isLoading, error }) 
               <Form.Control
                 type="password"
                 placeholder="Password"
+                onChange={(e) => setFormValue({ ...form, password: e.target.value })}
               />
             </Form.Group>
           </Form>
@@ -44,8 +46,8 @@ const Login = ({ show, setShow, form, setFormValue, signIn, isLoading, error }) 
           </Button>
           <Button
             variant="primary"
-            onClick={true}
-            disabled={false}>
+            onClick={() => signIn()}
+            disabled={isLoading}>
             {isLoading ? '...loading' : 'Sign In'}
           </Button>
         </Modal.Footer>
