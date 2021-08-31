@@ -1,9 +1,12 @@
 import Head from 'next/head'
-import Header from  '../components/Header'
+import { connect } from 'react-redux';
+import Header from '../components/Header'
 import NewTodo from '../components/NewTodo';
 
+import { getTodos, createTodo, updateTodo, deleteTodo } from '../redux/actions/todo'
+
 const Todo = ({ setTitle, createTodo, isLoading, error }) => {
-  return(
+  return (
     <>
 
       <Head>
@@ -16,9 +19,17 @@ const Todo = ({ setTitle, createTodo, isLoading, error }) => {
       <main>
         <NewTodo />
       </main>
-      
+
     </>
   )
 }
 
-export default Todo
+const mapStateToProps = state => ({
+  userInfo: state.main
+})
+
+const mapDispatchToProps = state => ({
+  getTodos, createTodo, updateTodo, deleteTodo
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Todo)
