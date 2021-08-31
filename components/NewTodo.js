@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { Alert, Button, Form, Modal } from 'react-bootstrap'
 
-const NewTodo = ({ setTitle, createTodo, isLoading, error }) => {
-  const [show, setShow] = useState(false);
+const NewTodo = ({ setTitle, createTodo, show, setShow, isLoading, error }) => {
 
   return (
     <>
       <Modal
         show={show}
+        onHide={() => setShow(false)}
       >
         <Modal.Header closeButton>
           <Modal.Title>Add a Todo</Modal.Title>
