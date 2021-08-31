@@ -4,15 +4,8 @@ import { Alert, Button, Form, Modal } from 'react-bootstrap'
 const NewTodo = ({ setTitle, createTodo, isLoading, error }) => {
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  return(
+  return (
     <>
-      <Button variant='primary' onClick={handleShow}>
-        Launch demo modal
-      </Button>
-
       <Modal
         show={show}
       >
@@ -21,15 +14,35 @@ const NewTodo = ({ setTitle, createTodo, isLoading, error }) => {
         </Modal.Header>
 
         <Modal.Body>
-          Modal Body
+          {
+            error &&
+            <Alert variant='danger'>{error}</Alert>
+          }
+          <Form>
+            <Form.Group controlId='formBasicEmail'>
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Enter your name'
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </Form.Group>
+          </Form>
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant='secondary' onClick={handleClose}>
+          <Button
+            variant='secondary'
+            onClick={() => setShow(false)}
+          >
             Close
           </Button>
-          <Button variant='primary' onClick={handleClose}>
-            Save Changes
+          <Button
+            variant='primary'
+            onClick={() => createTodo()}
+            disabled={isLoading}
+          >
+            {isLoading ? '...loading' : 'Add Todo'}
           </Button>
         </Modal.Footer>
 
