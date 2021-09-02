@@ -38,26 +38,29 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 First of all you should have installed MongoDB and be able to run it before you install mongoose. You can read [this](https://www.positronx.io/install-mongodb-on-macos/) article to see how to do that on Mac, and this one [Install MongoDB Community Edition on macOS](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/).
 
 0. Install Mongo MacOS
+
 ```
 brew tap mongodb/brew
+brew install --build-from-source mongosh
 brew install mongodb-community
 ```
 
 To run MongoDB (i.e. the mongod process) as a macOS service, run:
+
 ```
 brew services start mongodb-community
 ```
 
 To stop a mongod running as a macOS service, use the following command as needed:
+
 ```
 brew services stop mongodb-community
 ```
 
 To begin using MongoDB, connect mongosh to the running instance. From a new terminal, issue the following:
+
 ```
 mongosh
-
-
 ```
 
 1. In order to install mongoose, we’ll use npm command in the project folder. But first, you should go to the relevant project folder in command line.
@@ -67,8 +70,19 @@ yarn add mongoose
 ```
 
 2. Require mongoose in app.js / in the models or connect file
+
 ```
 const mongoose = require("mongoose");
 ```
 
 3. Go to `server/model/connect.js` file, here is the configuration
+
+## Env vars
+
+You can find an example of `env` vars on `.env.example`. Keep in mind the Mongo URI:
+
+```
+MONGO_DB_URI=mongodb://localhost:27017/usersDB
+```
+
+More info: [Mongoose Connections](https://mongoosejs.com/docs/connections.html)
