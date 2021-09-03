@@ -33,10 +33,10 @@ const routes = () => {
     const info = req.body
 
     TodoSchema.find({ email: info.email })
-      .then(todo => {
+      .then(todos => {
         res.status(200).json({
           success: true,
-          todo: todo,
+          todos: todos,
         })
       })
       .catch(
