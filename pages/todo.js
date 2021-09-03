@@ -10,8 +10,9 @@ import { getTodos, createTodo, updateTodo, deleteTodo } from '../redux/actions/t
 
 const Todo = (props) => {
 
-  const { todos, loading, error } = props.userInfo
-  const { createTodo, deleteTodo, updateTodo } = props
+  const { loading, error } = props.userInfo
+  const { todos } = props.todos
+  const { deleteTodo, updateTodo } = props
 
   const [show, setShow] = useState(false)
   const [title, setTitle] = useState('')
@@ -73,7 +74,7 @@ const Todo = (props) => {
                   </ListGroup.Item>
 
                   <Button
-                    variant={success}
+                    variant='success'
                     className='ml-2 mr-2'
                     onClick={() => updateTodo(todo._id, todo.title, true)}
                     disabled={todo.done}
@@ -98,11 +99,12 @@ const Todo = (props) => {
 }
 
 const mapStateToProps = state => ({
-  userInfo: state.main
+  userInfo: state.main,
+  todos: state.todo
 })
 
-const mapDispatchToProps = state => ({
-  getTodos, createTodo, updateTodo, deleteTodo
-})
+const mapDispatchToProps = {
+  createTodo, getTodos,
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Todo)
