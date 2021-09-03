@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ListGroup, Button } from 'react-bootstrap'
 import { connect } from 'react-redux';
 
@@ -11,10 +11,18 @@ import { getTodos, createTodo, updateTodo, deleteTodo } from '../redux/actions/t
 const Todo = (props) => {
 
   const { todos, loading, error } = props.userInfo
-  const { updateTodo, deleteTodo } = props
+  const { createTodo, deleteTodo, updateTodo } = props
 
   const [show, setShow] = useState(false)
   const [title, setTitle] = useState('')
+
+  useEffect(() => {
+    props.getTodos()
+  }, [])
+
+  const createTodoHelper = () => {
+    props.createTodo(title)
+  }
 
   return (
     <>
@@ -32,12 +40,14 @@ const Todo = (props) => {
           setTitle={setTitle}
           isLoading={loading}
           error={error}
-          createTodo={createTodo}
+          createTodo={createTodoHelper}
         />
 
         <div className='main'>
           <Header />
-          <h1 className='title'>Cool, Stuff todo Today</h1>
+          <h1 className='title'>
+            Cool, Stuff todo Today
+          </h1>
           <Button
             variant='info'
             className='mt-2 mb-2'
