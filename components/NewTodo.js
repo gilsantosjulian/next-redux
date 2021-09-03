@@ -38,9 +38,9 @@ const NewTodo = ({ setTitle, createTodo, show, setShow, isLoading, error }) => {
             Close
           </Button>
           <Button
-            variant='primary'
-            onClick={() => createTodo()}
             disabled={isLoading}
+            onClick={createTodo}
+            variant='primary'
           >
             {isLoading ? '...loading' : 'Add Todo'}
           </Button>
