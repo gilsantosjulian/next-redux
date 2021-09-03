@@ -13,6 +13,12 @@ const main = (state = initialState, action) => {
         todos: action.payload
       }
 
+    case t.CREATE_TODO:
+      return {
+        ...state,
+        todos: state.todos.concat(action.payload)
+      }
+
     default:
       return { ...state }
   }
