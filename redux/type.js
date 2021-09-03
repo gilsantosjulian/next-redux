@@ -6,3 +6,4 @@ export const ERROR = 'ERROR'
 export const SET_NAME = 'SET_NAME'
 
 export const GET_TODOS = 'GET_TODOS'
+export const CREATE_TODO = 'CREATE_TODO'
