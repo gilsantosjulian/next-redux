@@ -13,7 +13,7 @@ export const getTodos = () => async dispatch => {
 
     const userData = JSON.parse(localStorage.getItem('user_info'))
     const email = userData?.email
-    const URL = `${API_ADDRESS}/api/todos/my`
+    const URL = `${API_ADDRESS}/api/todo/my`
 
     const apiResponse = await request.post(URL, { email })
 
@@ -39,18 +39,17 @@ export const getTodos = () => async dispatch => {
 
 export const createTodo = (title) => async dispatch => {
   try {
-    console.log('entra a createTodo')
     dispatch({
       type: t.LOADING,
       payload: true
     })
 
     const userData = JSON.parse(localStorage.getItem('user_info'))
-    const email = userDate ? userData.email : ''
+    const email = userData ? userData.email : ''
     const URL = `${API_ADDRESS}/api/todo/new`
 
     const apiResponse = await request.post(
-      URI, 
+      URL,
       { title, email, done: false }
     )
 
