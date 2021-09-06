@@ -19,6 +19,18 @@ const main = (state = initialState, action) => {
         todos: state.todos.concat(action.payload)
       }
 
+    case t.UPDATE_TODO:
+      return {
+        ...state,
+        todos: action.payload
+      }
+
+    case t.DELETE_TODO:
+      return {
+        ...state,
+        todos: action.payload
+      }
+
     default:
       return { ...state }
   }
