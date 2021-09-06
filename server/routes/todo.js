@@ -55,11 +55,11 @@ const routes = () => {
       })
 
       if(todo) {
-        const todo = await TodoSchema.find({ email: info.email })
+        const todos = await TodoSchema.find({ email: info.email })
 
         res.status(200).json({
           success: true,
-          todo: todo,
+          todos: todos,
         })
       }
     } catch (error) {
