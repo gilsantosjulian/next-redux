@@ -104,7 +104,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  createTodo, getTodos,
+  createTodo, getTodos, updateTodo, deleteTodo,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Todo)
