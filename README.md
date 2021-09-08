@@ -86,3 +86,48 @@ MONGO_DB_URI=mongodb://localhost:27017/usersDB
 ```
 
 More info: [Mongoose Connections](https://mongoosejs.com/docs/connections.html)
+
+
+### Install Docker
+
+https://docs.docker.com/install/
+
+### Run Next-Redux services
+
+```shell script
+
+## Build docker containers (runs `docker-compose build` for you)
+## This script also runs `npm run reset` to clean up before rebuilding
+$ npm run build
+
+## Start docker containers (runs `docker-compose up` for you)
+$ npm run start
+
+## Stop docker containers (runs `docker-compose down` for you)
+## This command stops containers, but persists any volumes and images. This means that data is persisted across sessions.
+$ npm run stop
+
+## Output service logs
+$ npm run log ${SERVICE_NAME}
+
+## List container
+$ docker ps -a
+
+## Stop the container(s) using the following command
+$ docker-compose down
+
+## Delete all containers using the following command
+$ docker rm -f $(docker ps -a -q)
+
+## Delete all volumes using the following command
+$ docker volume rm $(docker volume ls -q)
+
+## Restart the containers using the following command
+$ docker-compose up -d
+
+## See docker images
+$ docker images
+
+## Remoce docker images
+$ docker rmi $(docker images -q)
+```
