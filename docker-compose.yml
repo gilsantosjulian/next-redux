@@ -1,0 +1,19 @@
+version: "3.4"
+
+services:
+  frontend:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./
+    image: dev_next_redux_frontend
+    restart: always
+    volumes:
+      - ./:/usr/src/app/frontend
+    ports:
+      - '3001:3001'
+    environment:
+      API_ADDRESS: localhost:3000
+      NODE_ENV: development
+      PORT: 3001
+      MONGO_DB_URI: mongodb://localhost:27017/usersDB
+      SECRET: thisisawrongsecret
