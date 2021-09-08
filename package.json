@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "nodemon server/index.js",
+    "build:docker": "npm run stop && docker-compose -f ./docker-compose.yml build",
+    "start": "docker-compose -f ./docker-compose.yml up",
     "lint": "next lint"
   },
   "dependencies": {
