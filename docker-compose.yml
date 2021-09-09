@@ -10,10 +10,23 @@ services:
     volumes:
       - ./:/usr/src/app/frontend
     ports:
-      - '3001:3001'
+      - '3001:8080'
     environment:
       API_ADDRESS: localhost:3000
       NODE_ENV: development
       PORT: 3001
+  backend:
+    build: ./backend
+    image: dev_next_redux_backend
+    restart: always
+    command: sh /usr/src/app/backend/start.sh
+    volumes:
+      - ./backend:/usr/src/app/backend
+    ports:
+      - '3000:3000'
+    environment:
+      API_ADDRESS: localhost:3000
+      NODE_ENV: development
+      PORT: 3000
       MONGO_DB_URI: mongodb://localhost:27017/usersDB
       SECRET: thisisawrongsecret
