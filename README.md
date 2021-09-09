@@ -128,6 +128,10 @@ $ docker-compose up -d
 ## See docker images
 $ docker images
 
-## Remoce docker images
+## Remove docker images
 $ docker rmi $(docker images -q)
+
+## Go inside container
+$ docker exec -it <container-id> bash
+$ docker exec -it <container-id> /bin/sh
 ```
