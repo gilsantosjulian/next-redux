@@ -2,30 +2,36 @@ version: "3.4"
 
 services:
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Web
-    image: dev_next_redux_frontend
+    build: ./frontend
     restart: always
     volumes:
-      - ./frontend:/app/frontend
+      - ./frontend:/app
     ports:
-      - '3000:8080'
+      - '3000:3000'
     environment:
       API_ADDRESS: localhost:3001
       NODE_ENV: development
       PORT: 3000
   backend:
     build: ./backend
-    image: dev_next_redux_backend
     restart: always
-    command: sh /usr/src/app/backend/start.sh && sh -c "--watch /usr/src/app/backend"
     volumes:
-      - ./backend:/usr/src/app/backend
+      - ./backend:/app
     ports:
-      - '3001:3000'
+      - '3001:3001'
     environment:
       NODE_ENV: development
       PORT: 3001
-      MONGO_DB_URI: mongodb://localhost:27017/usersDB
+      MONGO_DB_URI: mongodb://shuli:shulishuli@mongo:27017/usersDB
       SECRET: thisisawrongsecret
+  mongo:
+    image: mongo:4.4.6
+    expose:
+      - "27017"
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: usersDB
+      MONGO_INITDB_ROOT_USERNAME: shuli
+      MONGO_INITDB_ROOT_PASSWORD: shulishuli
