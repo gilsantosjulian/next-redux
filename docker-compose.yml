@@ -3,30 +3,29 @@ version: "3.4"
 services:
   frontend:
     build:
-      dockerfile: Dockerfile.dev
-      context: ./
+      context: ./frontend
+      dockerfile: Web
     image: dev_next_redux_frontend
     restart: always
     volumes:
-      - ./:/usr/src/app/frontend
+      - ./frontend:/app/frontend
     ports:
-      - '3001:8080'
+      - '3000:8080'
     environment:
-      API_ADDRESS: localhost:3000
+      API_ADDRESS: localhost:3001
       NODE_ENV: development
-      PORT: 3001
+      PORT: 3000
   backend:
     build: ./backend
     image: dev_next_redux_backend
     restart: always
-    command: sh /usr/src/app/backend/start.sh
+    command: sh /usr/src/app/backend/start.sh && sh -c "--watch /usr/src/app/backend"
     volumes:
       - ./backend:/usr/src/app/backend
     ports:
-      - '3000:3000'
+      - '3001:3000'
     environment:
-      API_ADDRESS: localhost:3000
       NODE_ENV: development
-      PORT: 3000
+      PORT: 3001
       MONGO_DB_URI: mongodb://localhost:27017/usersDB
       SECRET: thisisawrongsecret

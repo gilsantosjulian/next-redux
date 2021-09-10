@@ -1,0 +1,12 @@
+{
+  "name": "next-redux",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "log": " docker-compose -f ./docker-compose.yml logs --follow --timestamps"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}

@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "nodemon server/index.js"
+    "start": "nodemon ./index.js",
+    "log": " docker-compose -f ./docker-compose.yml logs --follow --timestamps"
   },
   "dependencies": {
     "axios": "^0.21.1",
