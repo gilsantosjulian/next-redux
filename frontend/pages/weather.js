@@ -1,38 +1,40 @@
+import { useState } from "react"
+import { connect } from "react-redux"
 import Head from 'next/head'
-import Header from  '../components/Header'
-import { useState } from 'react'
-import { connect } from 'react-redux'
-import { setInfo } from '../redux/actions/main'
+
+import { setInfo } from "../redux/actions/main"
+import Header from '../components/Header'
 
 const Weather = (props) => {
   const { userInfo, setInfo } = props
   const [ name, setName ] = useState('')
 
-  return(
-    <>
+  return (
+    <div className='xcontainer'>
       <Head>
         <title>The Weather</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <Header />
-
       <main>
-        <div>  
-          <h1>Today is looking Good for {userInfo.name}</h1>
-          <input 
-            name='name' 
-            value={name} 
-            onChange={(e) => setName(e.target.value)} 
+        <div className='main'>
+          <Header />
+          <h1 className='title'>
+            Today is Looking Good for {userInfo.name}
+          </h1>
+          <input
+            name='name'
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
-          <button 
+          <button
             onClick={() => setInfo(name)}
           >
             Submit
           </button>
         </div>
       </main>
-    </>
+    </div>
   )
 }
 

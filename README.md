@@ -135,3 +135,7 @@ $ docker rmi $(docker images -q)
 $ docker exec -it <container-id> bash
 $ docker exec -it <container-id> /bin/sh
 ```
+
+### Reference course
+
+[Udemy - Next](https://github.com/theallegrarr/udemy_next/blob/master/pages/weather.js)
