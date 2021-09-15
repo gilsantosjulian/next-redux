@@ -2,15 +2,23 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 dotenv.config()
 
-const connectURI = process.env.MONGO_DB_URI;
+
+const URI = process.env.MONGO_DB_URI;
+const USERNAME = process.env.MONGO_INITDB_ROOT_USERNAME;
+const PASSWORD = process.env.MONGO_INITDB_ROOT_PASSWORD;
 
 mongoose.set('useCreateIndex', true)
 
 const connect = async () => {
   try{
-    await mongoose.connect(connectURI, {
+    await mongoose.connect(URI, {
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
+      auth: {
+        authSource: 'admin'
+      },
+      user: USERNAME,
+      pass: PASSWORD
     });
 
     console.log('connected to database')

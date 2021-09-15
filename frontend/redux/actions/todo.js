@@ -8,7 +8,7 @@ export const getTodos = () => async dispatch => {
   try {
     dispatch({
       type: t.LOADING,
-      payload: true
+      payload: false
     })
 
     const userData = JSON.parse(localStorage.getItem('user_info'))
