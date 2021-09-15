@@ -23,8 +23,8 @@ services:
     environment:
       NODE_ENV: development
       PORT: 3001
-      # MONGO_DB_URI: mongodb://shuli:shulishuli@mongo:27017/usersDB
-      MONGO_DB_URI: mongodb://mongo:27017/usersDB
+      MONGO_DB_URI: mongodb://shuli:shulishuli@mongo:27017/usersDB
+      # MONGO_DB_URI: mongodb://mongo:27017/usersDB
       SECRET: thisisawrongsecret
   mongo:
     image: mongo:4.4.6
